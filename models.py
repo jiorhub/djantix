@@ -71,6 +71,12 @@ class MPTTActiveTimeModel(MPTTModel):
     def has_active_children(self):
         return self.children_active().count() > 0
 
+    def spacer(self):
+        spacer = ''
+        for i in range(0, self.get_level()):
+            spacer += u'&nbsp;&nbsp;&nbsp;'
+        return spacer
+
     def save(self, *args, **kwargs):
         if not self.date_added:
             self.date_added = datetime.now()
